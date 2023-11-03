@@ -24,6 +24,10 @@ public class ReviewController {
         return this.reviewService.findById(id);
     }
 
+    @GetMapping("/byProductId")
+    public List<Review> getReviewsByProductId(@RequestParam Integer id) {
+        return reviewService.findByProductId(id);
+    }
     @PostMapping
     public void save(@RequestBody Review review) {
         this.reviewService.addAndUpdateReview(review);

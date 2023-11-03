@@ -23,6 +23,22 @@ public class ProductController {
         return this.productService.findById(id);
     }
 
+
+    @GetMapping("/byMinPrice")
+    public List<Product> getProductsByMinPrice(@RequestParam double minPrice) {
+        return this.productService.findByPriceGreaterThan(minPrice);
+    }
+
+    @GetMapping("/byCategoryAndMaxPrice")
+    public List<Product> getProductsByCategoryAndMaxPrice(@RequestParam String category, @RequestParam double maxPrice) {
+        return this.productService.findByCategoryAndPriceLessThan(category, maxPrice);
+    }
+
+    @GetMapping("/byKeyword")
+    public List<Product> getProductsByKeyword(@RequestParam String keyword) {
+        return this.productService.findByNameContaining(keyword);
+    }
+
     @PostMapping
     public void save(@RequestBody Product product) {
         this.productService.addAndUpdateProduct(product);
